@@ -1,0 +1,43 @@
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'index.jsp' starting page</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+  </head>
+  <script>
+    function ajaxSubmitTpc() {
+        $("input[name=f_sjjtpc]").upload({
+            url: './api/service/fileupload/uploadsjjtpc',
+            // 其他表单数据
+            params: { name: 'pxblog' },
+            // 上传完成后, 返回json, text
+            dataType: 'json',
+            onSend: function (obj, str) {  return true; },
+            // 上传之后回调
+            onComplate: function (data) {
+                alert(data.file);
+            }
+        });
+        $("input[name=f_sjjtpc]").upload("ajaxSubmit")
+    }
+</script>
+  
+  <body>
+   <input type="file" name="f_sjjtpc" />
+  </body>
+</html>
